@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
             if (movies.size() != 0) {
                 mMovieAdapter.setMovieData(movies);
                 mRecyclerView.setVisibility(View.VISIBLE);
-
+              
             }
         }
     }

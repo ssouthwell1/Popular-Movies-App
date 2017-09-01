@@ -14,13 +14,13 @@ public class StringUtils {
 
     public static final String BASE_POSTER_IMAGE_URL = "http://image.tmdb.org/t/p";
 
+    public static final String DEFAULT_MOVIE_POSTER_SIZE = "w185";
+
     public static final String QUERY_PARAM = "q";
 
     public static final String POPULAR_MOVIE_PARAM = "popular";
 
     public static final String TOP_RATED_MOVIE_PARAM = "top_rated";
-
-
 
 
 }
