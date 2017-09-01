@@ -26,9 +26,7 @@ public class MainActivity extends AppCompatActivity {
     ProgressBar mLoadingBar;
 
     RecyclerView mRecyclerView;
-    //MovieAdapter mMovieAdapter;
 
-    TextView textView;
 
     ArrayList<Movie> mMovies = new ArrayList<>();
 
@@ -44,10 +42,10 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView = ((RecyclerView) findViewById(R.id.rv_movie_grid));
 
 
-
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
-//        mMovieAdapter = new MovieAdapter(MainActivity.this, mMovies);
         mRecyclerView.setLayoutManager(gridLayoutManager);
+        mMovieAdapter = new MovieAdapter(MainActivity.this, mMovies);
+        mRecyclerView.setAdapter(mMovieAdapter);
         mRecyclerView.setHasFixedSize(true);
 
         loadMovieData();
@@ -101,8 +99,9 @@ public class MainActivity extends AppCompatActivity {
             super.onPostExecute(movies);
 
             if (movies.size() != 0) {
-                mMovieAdapter = new MovieAdapter(MainActivity.this, mMovies);
+                mMovieAdapter.setMovieData(movies);
                 mRecyclerView.setVisibility(View.VISIBLE);
+
             }
         }
     }

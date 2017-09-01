@@ -12,7 +12,7 @@ public class StringUtils {
 
     public static final String MOVIE_URL = "https://api.themoviedb.org/3/movie/";
 
-    public static final String BASE_POSTER_IMAGE_URL = "http://image.tmdb.org/t/p/";
+    public static final String BASE_POSTER_IMAGE_URL = "http://image.tmdb.org/t/p";
 
     public static final String QUERY_PARAM = "q";
 

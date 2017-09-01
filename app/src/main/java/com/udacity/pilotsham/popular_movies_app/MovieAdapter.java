@@ -45,7 +45,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
     public void onBindViewHolder(MovieAdapterViewHolder holder, int position) {
 
         Movie movie = mMovies.get(position);
-        Uri uri = Uri.parse(StringUtils.BASE_POSTER_IMAGE_URL).buildUpon()
+        Uri uri = Uri.parse(StringUtils.BASE_POSTER_IMAGE_URL).buildUpon().appendEncodedPath("w185")
                 .appendEncodedPath(movie.getPosterPath())
                 .build();
 
