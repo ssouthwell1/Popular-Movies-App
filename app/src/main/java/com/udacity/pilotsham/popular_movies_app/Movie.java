@@ -1,5 +1,8 @@
 package com.udacity.pilotsham.popular_movies_app;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -7,7 +10,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by shamarisouthwell on 8/30/17.
  */
 
-public class Movie {
+public class Movie implements Parcelable {
 
     @SerializedName("vote_count")
     @Expose
@@ -56,6 +59,32 @@ public class Movie {
     @SerializedName("release_date")
     @Expose
     private String releaseDate;
+
+
+    public final static Parcelable.Creator<Movie> CREATOR = new Creator<Movie>() {
+
+        @Override
+        public Movie createFromParcel(Parcel parcel) {
+            Movie movie = new Movie();
+            movie.backdropPath = parcel.readString();
+            movie.id = parcel.readInt();
+            movie.voteCount = parcel.readInt();
+            movie.title = parcel.readString();
+            movie.releaseDate = parcel.readString();
+            movie.posterPath = parcel.readString();
+            movie.overview = parcel.readString();
+
+
+            return movie;
+        }
+
+        @Override
+        public Movie[] newArray(int i) {
+            return new Movie[0];
+        }
+
+    };
+
 
     public Integer getVoteCount() {
         return voteCount;
@@ -151,5 +180,15 @@ public class Movie {
 
     public void setReleaseDate(String releaseDate) {
         this.releaseDate = releaseDate;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+
     }
 }

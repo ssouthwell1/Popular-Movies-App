@@ -11,7 +11,6 @@ import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,7 +50,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
 
         Log.d(TAG, "Image url: " + uri.toString());
 
-        Picasso.with(mContext).load(uri).centerInside().resize(500, 800).into(holder.movieItemView);
+        Picasso.with(mContext).load(uri).into(holder.movieItemView);
         Picasso.with(mContext).setLoggingEnabled(true);
 
 
@@ -59,7 +58,9 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
 
     @Override
     public int getItemCount() {
-
+        if (mMovies == null) {
+            return 0;
+        }
 
         return mMovies.size();
     }
