@@ -1,6 +1,6 @@
 package com.udacity.pilotsham.popular_movies_app;
 
-import android.content.Context;
+
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -12,17 +12,17 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
-import android.widget.TextView;
+
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonDeserializationContext;
+
 import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
-import java.net.Proxy;
+
 import java.net.URL;
 import java.util.ArrayList;
 

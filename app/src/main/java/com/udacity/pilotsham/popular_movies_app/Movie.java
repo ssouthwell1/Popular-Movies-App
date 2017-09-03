@@ -1,11 +1,11 @@
 package com.udacity.pilotsham.popular_movies_app;
 
-import android.content.Context;
+
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.support.annotation.Nullable;
 
-import com.google.gson.annotations.Expose;
+
+
 import com.google.gson.annotations.SerializedName;
 
 /**

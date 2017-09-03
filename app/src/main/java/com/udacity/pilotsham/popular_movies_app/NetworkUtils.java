@@ -4,21 +4,20 @@ import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+
 import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+
 import com.google.gson.JsonParser;
-import com.google.gson.reflect.TypeToken;
+
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.lang.reflect.Type;
+
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
+
 
 /**
  * Created by shamarisouthwell on 8/30/17.
@@ -28,8 +27,6 @@ public class NetworkUtils extends AppCompatActivity {
 
 
     private static final String TAG = NetworkUtils.class.getSimpleName();
-
-
 
 
     public static URL buildSortByUrl(String sortByParam) {
@@ -73,8 +70,6 @@ public class NetworkUtils extends AppCompatActivity {
             urlConnection.disconnect();
         }
     }
-
-
 
 
 }
