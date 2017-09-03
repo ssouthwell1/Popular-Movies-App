@@ -16,11 +16,13 @@ public class StringUtils {
 
     public static final String DEFAULT_MOVIE_POSTER_SIZE = "w185";
 
-    public static final String QUERY_PARAM = "q";
+    public static final String MOVIE_EXTRA = "MOVIE_EXTRA";
 
     public static final String POPULAR_MOVIE_PARAM = "popular";
 
     public static final String TOP_RATED_MOVIE_PARAM = "top_rated";
+
+    public final static String API_KEY_PARAM = "api_key";
 
 
 }

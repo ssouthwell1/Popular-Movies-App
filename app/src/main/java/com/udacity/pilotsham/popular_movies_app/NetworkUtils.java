@@ -28,14 +28,14 @@ public class NetworkUtils extends AppCompatActivity {
 
 
     private static final String TAG = NetworkUtils.class.getSimpleName();
-    private final static String apiKey = "e671f75966541248b1d1c257e0d0ae5d";
-    private final static String API_KEY_PARAM = "api_key";
+
+
 
 
     public static URL buildSortByUrl(String sortByParam) {
 
         Uri builtUri = Uri.parse(StringUtils.MOVIE_URL).buildUpon()
-                .appendEncodedPath(sortByParam).appendQueryParameter(API_KEY_PARAM, apiKey).build();
+                .appendEncodedPath(sortByParam).appendQueryParameter(StringUtils.API_KEY_PARAM, StringUtils.API_KEY).build();
 
         URL url = null;
         try {

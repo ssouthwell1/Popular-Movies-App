@@ -23,12 +23,19 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
     private static final String TAG = MovieAdapter.class.getSimpleName();
     private List<Movie> mMovies = new ArrayList<>();
     private Context mContext;
+    private MovieAdapterOnClickHandler mMovieAdapterOnClickHandler;
 
-    public MovieAdapter(Context context, List<Movie> movieList) {
+    public MovieAdapter(Context context, List<Movie> movieList, MovieAdapterOnClickHandler onClickHandler) {
         this.mMovies = movieList;
         this.mContext = context;
+        mMovieAdapterOnClickHandler = onClickHandler;
+    }
+
+    public interface MovieAdapterOnClickHandler {
+        void onMovieClick(Movie movie);
 
     }
+
 
     @Override
     public MovieAdapterViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -44,15 +51,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
     public void onBindViewHolder(MovieAdapterViewHolder holder, int position) {
 
         Movie movie = mMovies.get(position);
-        Uri uri = Uri.parse(StringUtils.BASE_POSTER_IMAGE_URL).buildUpon().appendEncodedPath(StringUtils.DEFAULT_MOVIE_POSTER_SIZE)
-                .appendEncodedPath(movie.getPosterPath())
-                .build();
-
-        Log.d(TAG, "Image url: " + uri.toString());
-
-        Picasso.with(mContext).load(uri).into(holder.movieItemView);
-        Picasso.with(mContext).setLoggingEnabled(true);
-
+        holder.bindTo(movie);
 
     }
 
@@ -67,11 +66,27 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
 
     public class MovieAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView movieItemView;
+        Movie mMovie;
 
         @Override
         public void onClick(View view) {
+          
+            mMovieAdapterOnClickHandler.onMovieClick(mMovie);
+        }
+
+        public void bindTo(Movie movie) {
+            mMovie = movie;
+            Uri uri = Uri.parse(StringUtils.BASE_POSTER_IMAGE_URL).buildUpon().appendEncodedPath(StringUtils.DEFAULT_MOVIE_POSTER_SIZE)
+                    .appendEncodedPath(movie.getPosterPath())
+                    .build();
+
+            Log.d(TAG, "Image url: " + uri.toString());
+
+            Picasso.with(mContext).load(uri).into(movieItemView);
+            Picasso.with(mContext).setLoggingEnabled(true);
 
         }
+
 
         public MovieAdapterViewHolder(View view) {
             super(view);

@@ -1,5 +1,7 @@
 package com.udacity.pilotsham.popular_movies_app;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -24,7 +26,7 @@ import java.net.Proxy;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MovieAdapter.MovieAdapterOnClickHandler {
 
     ProgressBar mLoadingBar;
 
@@ -47,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(gridLayoutManager);
-        mMovieAdapter = new MovieAdapter(MainActivity.this, mMovies);
+        mMovieAdapter = new MovieAdapter(MainActivity.this, mMovies, this);
         mRecyclerView.setAdapter(mMovieAdapter);
         mRecyclerView.setHasFixedSize(true);
 
@@ -57,6 +59,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void loadMovieData(String sortByParam) {
         new MovieQueryTask().execute(sortByParam);
+    }
+
+    @Override
+    public void onMovieClick(Movie movie) {
+        Intent intent = new Intent(this, MovieDetailsActivity.class);
+        intent.putExtra(StringUtils.MOVIE_EXTRA, movie);
+        startActivity(intent);
     }
 
 
