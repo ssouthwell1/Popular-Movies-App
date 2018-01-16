@@ -10,7 +10,6 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 
-
 public class MovieDetailsActivity extends AppCompatActivity {
 
     private TextView mUserRating;
@@ -24,7 +23,6 @@ public class MovieDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_details);
-
         mUserRating = ((TextView) findViewById(R.id.movie_user_rating));
         mOverview = ((TextView) findViewById(R.id.movie_overview));
         mPosterImage = ((ImageView) findViewById(R.id.movie_poster));

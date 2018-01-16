@@ -6,7 +6,7 @@ package com.udacity.pilotsham.popular_movies_app;
 
 public class StringUtils {
 
-    public static final String API_KEY = "add api key here";
+    public static final String API_KEY = "e671f75966541248b1d1c257e0d0ae5d";
 
     public static final String BASE_URL = "https://api.themoviedb.org/3/";
 
