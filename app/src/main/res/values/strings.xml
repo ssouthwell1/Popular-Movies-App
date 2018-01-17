@@ -8,5 +8,8 @@
     <string name="title_movie_detail">Movie Detail</string>
 
     <string name="user_rating_movie">%1$s/10</string>
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+    
 
 </resources>

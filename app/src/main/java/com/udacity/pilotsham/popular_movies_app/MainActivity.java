@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
         mDrawerLayout.addDrawerListener(mDrawerToggle);
         mDrawerToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
+        //getSupportActionBar().setHomeButtonEnabled(true);
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(gridLayoutManager);
@@ -148,7 +148,6 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
         if (mDrawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
-
         if (id == R.id.action_sort_by_popular) {
             loadMovieData(StringUtils.POPULAR_MOVIE_PARAM);
         } else if (id == R.id.action_sort_by_rating) {

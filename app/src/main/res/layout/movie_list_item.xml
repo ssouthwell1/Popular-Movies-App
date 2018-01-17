@@ -10,11 +10,9 @@
         android:id="@+id/image_movie_poster"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:clickable="true"
-        android:scaleType="centerCrop"
-        tools:src="@drawable/deadpool"
         android:adjustViewBounds="true"
-        />
+        android:clickable="true"
+        android:scaleType="centerCrop" />
 
 
 </RelativeLayout>
