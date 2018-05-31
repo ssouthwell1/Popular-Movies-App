@@ -5,7 +5,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 
-
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 /**
@@ -16,24 +16,31 @@ public class Movie implements Parcelable {
 
 
     @SerializedName("id")
+    @Expose
     private Integer id;
 
     @SerializedName("vote_average")
+    @Expose
     private Double userRating;
 
     @SerializedName("title")
+    @Expose
     private String title;
 
     @SerializedName("poster_path")
+    @Expose
     private String posterPath;
 
     @SerializedName("backdrop_path")
+    @Expose
     private String backdropPath;
 
     @SerializedName("overview")
+    @Expose
     private String overview;
 
     @SerializedName("release_date")
+    @Expose
     private String releaseDate;
 
 
