@@ -1,7 +1,8 @@
-package com.udacity.pilotsham.popular_movies_app;
+package com.udacity.pilotsham.popular_movies_app.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.udacity.pilotsham.popular_movies_app.model.Movie;
 
 import java.util.List;
 
@@ -23,6 +24,19 @@ public class MovieResponse {
     @Expose
     List<Movie> results;
 
+    public MovieResponse() {
+        /*
+        Empty constructor for use in JSON serialization
+         */
+
+    }
+
+    public MovieResponse(Integer page, Integer totalResults, Integer totalPages, List<Movie> results) {
+        this.page = page;
+        this.totalResults = totalResults;
+        this.totalPages = totalPages;
+        this.results = results;
+    }
 
     public Integer getPage() {
         return page;

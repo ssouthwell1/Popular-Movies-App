@@ -1,4 +1,4 @@
-package com.udacity.pilotsham.popular_movies_app;
+package com.udacity.pilotsham.popular_movies_app.model;
 
 
 import android.os.Parcel;

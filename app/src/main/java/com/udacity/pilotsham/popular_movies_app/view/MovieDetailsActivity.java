@@ -1,4 +1,4 @@
-package com.udacity.pilotsham.popular_movies_app;
+package com.udacity.pilotsham.popular_movies_app.view;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -8,6 +8,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
+import com.udacity.pilotsham.popular_movies_app.R;
+import com.udacity.pilotsham.popular_movies_app.model.Movie;
+import com.udacity.pilotsham.popular_movies_app.utilities.StringUtils;
 
 
 public class MovieDetailsActivity extends AppCompatActivity {

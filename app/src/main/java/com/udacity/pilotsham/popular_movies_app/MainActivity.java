@@ -2,9 +2,6 @@ package com.udacity.pilotsham.popular_movies_app;
 
 
 import android.content.Intent;
-import android.os.AsyncTask;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -16,63 +13,62 @@ import android.view.View;
 import android.widget.ProgressBar;
 
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.udacity.pilotsham.popular_movies_app.adapters.MovieAdapter;
+import com.udacity.pilotsham.popular_movies_app.model.Movie;
+import com.udacity.pilotsham.popular_movies_app.model.MovieResponse;
+import com.udacity.pilotsham.popular_movies_app.presenter.MoviePresenterImpl;
+import com.udacity.pilotsham.popular_movies_app.utilities.StringUtils;
+import com.udacity.pilotsham.popular_movies_app.view.MovieDetailsActivity;
+import com.udacity.pilotsham.popular_movies_app.view.MovieView;
 
-import com.google.gson.JsonElement;
-import com.google.gson.reflect.TypeToken;
-
-import java.io.IOException;
-import java.lang.reflect.Type;
-
-import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements MovieAdapter.MovieAdapterOnClickHandler {
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
-    private DrawerLayout mDrawerLayout;
-    private ActionBarDrawerToggle mDrawerToggle;
+public class MainActivity extends AppCompatActivity implements MovieAdapter.MovieAdapterOnClickHandler, MovieView {
 
-    ProgressBar mLoadingBar;
+    private MoviePresenterImpl moviePresenter;
 
-    RecyclerView mRecyclerView;
-
-
-    ArrayList<Movie> mMovies = new ArrayList<>();
+    List<Movie> mMovies = new ArrayList<>();
 
     MovieAdapter mMovieAdapter;
+
+    @BindView(R.id.pb_movie_loading)
+    ProgressBar mLoadingBar;
+
+    @BindView(R.id.rv_movie_grid)
+    RecyclerView mRecyclerView;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        mLoadingBar = ((ProgressBar) findViewById(R.id.pb_movie_loading));
-        mRecyclerView = ((RecyclerView) findViewById(R.id.rv_movie_grid));
-        mDrawerLayout = ((DrawerLayout) findViewById(R.id.drawer_layout));
-        // mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
-
-
-        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
-                R.string.drawer_open, R.string.drawer_close);
-        mDrawerLayout.addDrawerListener(mDrawerToggle);
-        mDrawerToggle.syncState();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        //getSupportActionBar().setHomeButtonEnabled(true);
-
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
-        mRecyclerView.setLayoutManager(gridLayoutManager);
-        mMovieAdapter = new MovieAdapter(MainActivity.this, mMovies, this);
-        mRecyclerView.setAdapter(mMovieAdapter);
-        mRecyclerView.setHasFixedSize(true);
-
+        ButterKnife.bind(this);
+        ButterKnife.setDebug(true);
+        init();
         loadMovieData(StringUtils.POPULAR_MOVIE_PARAM);
+
+
+    }
+
+    public void init() {
+        /**
+         * Create Grid layout for recycler view to span 2 vertical columns and setup Movie Presenter
+         */
+        moviePresenter = new MoviePresenterImpl(this);
+        mRecyclerView.setLayoutManager(new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false));
 
     }
 
     private void loadMovieData(String sortByParam) {
-        new MovieQueryTask().execute(sortByParam);
+        if (sortByParam.equalsIgnoreCase(StringUtils.POPULAR_MOVIE_PARAM)) {
+            moviePresenter.getPopularMovies();
+        } else if (sortByParam.equalsIgnoreCase(StringUtils.TOP_RATED_MOVIE_PARAM))
+            moviePresenter.getTopRatedMovies();
+
     }
 
     @Override
@@ -83,54 +79,39 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
     }
 
 
-    public class MovieQueryTask extends AsyncTask<String, Void, ArrayList<Movie>> {
-        @Override
-        protected ArrayList<Movie> doInBackground(String... strings) {
+    @Override
+    public void displayMovies(MovieResponse movieResponse) {
+        /**
+         * Method to add movie results from API response to Activity and set adapter in order to display the results
+         */
 
-            Type listType = new TypeToken<ArrayList<Movie>>() {
-            }.getType();
+        if (movieResponse != null) {
+            mMovies = movieResponse.getResults();
+            mMovieAdapter = new MovieAdapter(this, mMovies, this);
+            mRecyclerView.setAdapter(mMovieAdapter);
+            mRecyclerView.setHasFixedSize(true);
 
-            Gson gson =
-                    new GsonBuilder()
-                            .registerTypeAdapter(listType, new MovieDeserializer())
-                            .create();
-
-
-            String sortByParam = strings[0];
-            URL url = NetworkUtils.buildSortByUrl(sortByParam);
-
-            try {
-
-                JsonElement response = NetworkUtils.getResponseFromHttpUrl(url);
-                mMovies = gson.fromJson(response, listType);
-
-            } catch (IOException e) {
-                e.printStackTrace();
-
-            }
-
-            return mMovies;
         }
 
-
-        @Override
-        protected void onPreExecute() {
-            mLoadingBar.setVisibility(View.VISIBLE);
-            super.onPreExecute();
-        }
-
-        @Override
-        protected void onPostExecute(ArrayList<Movie> movies) {
-            mLoadingBar.setVisibility(View.INVISIBLE);
-            super.onPostExecute(movies);
-
-            if (movies.size() != 0) {
-                mMovieAdapter.setMovieData(movies);
-                mRecyclerView.setVisibility(View.VISIBLE);
-
-            }
-        }
     }
+
+
+
+    @Override
+    public void showProgress() {
+        mLoadingBar.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideProgress() {
+        mLoadingBar.setVisibility(View.INVISIBLE);
+    }
+
+    @Override
+    public void displayError(String error) {
+
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -145,9 +126,6 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (mDrawerToggle.onOptionsItemSelected(item)) {
-            return true;
-        }
         if (id == R.id.action_sort_by_popular) {
             loadMovieData(StringUtils.POPULAR_MOVIE_PARAM);
         } else if (id == R.id.action_sort_by_rating) {
