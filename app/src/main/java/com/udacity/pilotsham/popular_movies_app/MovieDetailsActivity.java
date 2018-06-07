@@ -1,4 +1,4 @@
-package com.udacity.pilotsham.popular_movies_app.view;
+package com.udacity.pilotsham.popular_movies_app;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -8,31 +8,38 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
-import com.udacity.pilotsham.popular_movies_app.R;
 import com.udacity.pilotsham.popular_movies_app.model.Movie;
 import com.udacity.pilotsham.popular_movies_app.utilities.StringUtils;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 
 public class MovieDetailsActivity extends AppCompatActivity {
 
-    private TextView mUserRating;
-    private TextView mOverview;
-    private TextView mTitle;
-    private TextView mReleaseDate;
-    private ImageView mPosterImage;
-    private ImageView mThumbnailImage;
+    @BindView(R.id.movie_user_rating)
+    TextView mUserRating;
+
+    @BindView(R.id.movie_overview)
+    TextView mOverview;
+
+    @BindView(R.id.movie_title)
+    TextView mTitle;
+
+    @BindView(R.id.movie_release_date)
+    TextView mReleaseDate;
+
+    @BindView(R.id.movie_poster)
+    ImageView mPosterImage;
+
+    @BindView(R.id.movie_backdrop)
+    ImageView mThumbnailImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_details);
-        mUserRating = ((TextView) findViewById(R.id.movie_user_rating));
-        mOverview = ((TextView) findViewById(R.id.movie_overview));
-        mPosterImage = ((ImageView) findViewById(R.id.movie_poster));
-        mThumbnailImage = ((ImageView) findViewById(R.id.movie_backdrop));
-        mTitle = (TextView) findViewById(R.id.movie_title);
-        mReleaseDate = ((TextView) findViewById(R.id.movie_release_date));
-
+        ButterKnife.bind(this);
 
         Intent parentActivity = getIntent();
 

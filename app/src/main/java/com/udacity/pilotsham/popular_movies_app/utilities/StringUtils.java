@@ -14,7 +14,7 @@ public class StringUtils {
 
     public static final String BASE_POSTER_IMAGE_URL = "http://image.tmdb.org/t/p";
 
-    public static final String DEFAULT_MOVIE_POSTER_SIZE = "w185";
+    public static final String DEFAULT_MOVIE_POSTER_SIZE = "w500";
 
     public static final String MOVIE_EXTRA = "MOVIE_EXTRA";
 
@@ -22,7 +22,7 @@ public class StringUtils {
 
     public static final String TOP_RATED_MOVIE_PARAM = "top_rated";
 
-    public final static String API_KEY_PARAM = "api_key";
+//
 
 
 }

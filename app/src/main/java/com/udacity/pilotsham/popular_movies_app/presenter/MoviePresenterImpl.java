@@ -14,7 +14,7 @@ import io.reactivex.schedulers.Schedulers;
 
 public class MoviePresenterImpl implements MoviePresenter {
     private MovieView movieView;
-    private String TAG = "MainPresenterImpl";
+    private String TAG = "MoviePresenterImpl";
 
     public MoviePresenterImpl(MovieView movieView) {
         this.movieView = movieView;
@@ -44,7 +44,7 @@ public class MoviePresenterImpl implements MoviePresenter {
                     @Override
                     public void onComplete() {
                         movieView.hideProgress();
-                        Log.d(TAG, "progress bar hidden");
+                        Log.d(TAG, "Progress bar hidden");
                     }
                 });
 
@@ -74,7 +74,7 @@ public class MoviePresenterImpl implements MoviePresenter {
                     @Override
                     public void onComplete() {
                         movieView.hideProgress();
-                        Log.d(TAG, "progress bar hidden");
+                        Log.d(TAG, "Progress bar hidden");
                     }
                 });
     }

@@ -18,7 +18,6 @@ import com.udacity.pilotsham.popular_movies_app.model.Movie;
 import com.udacity.pilotsham.popular_movies_app.model.MovieResponse;
 import com.udacity.pilotsham.popular_movies_app.presenter.MoviePresenterImpl;
 import com.udacity.pilotsham.popular_movies_app.utilities.StringUtils;
-import com.udacity.pilotsham.popular_movies_app.view.MovieDetailsActivity;
 import com.udacity.pilotsham.popular_movies_app.view.MovieView;
 
 import java.util.ArrayList;
