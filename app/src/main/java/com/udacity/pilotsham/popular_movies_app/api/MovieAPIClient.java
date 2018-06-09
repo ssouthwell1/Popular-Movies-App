@@ -48,12 +48,12 @@ public class MovieAPIClient {
         return movieAPIService.getTopRatedMovies(apiKey);
     }
 
-    public Observable<VideoResponse> getMovieVideosById(@NonNull String apiKey, @NonNull int movieId) {
-        return movieAPIService.getMovieVideosById(apiKey, movieId);
+    public Observable<VideoResponse> getMovieVideosById(@NonNull int movieId, @NonNull String apiKey) {
+        return movieAPIService.getMovieVideosById(movieId, apiKey);
     }
 
-    public Observable<ReviewResponse> getMovieReviewsById(@NonNull String apiKey, @NonNull int movieId) {
-        return movieAPIService.getMovieReviewsById(apiKey, movieId);
+    public Observable<ReviewResponse> getMovieReviewsById(@NonNull int movieId, @NonNull String apiKey) {
+        return movieAPIService.getMovieReviewsById(movieId, apiKey);
     }
 
 

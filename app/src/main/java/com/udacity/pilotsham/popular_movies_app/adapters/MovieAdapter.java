@@ -2,12 +2,14 @@ package com.udacity.pilotsham.popular_movies_app.adapters;
 
 import android.content.Context;
 import android.net.Uri;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 import com.udacity.pilotsham.popular_movies_app.R;
@@ -16,6 +18,8 @@ import com.udacity.pilotsham.popular_movies_app.utilities.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import butterknife.BindView;
 
 /**
  * Created by shamarisouthwell on 8/31/17.
@@ -69,6 +73,9 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
 
     public class MovieAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView movieItemView;
+        CardView movieItemCardView;
+        TextView movieItemTitle;
+        TextView movieItemYear;
         Movie mMovie;
 
         @Override
@@ -77,8 +84,11 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
             mMovieAdapterOnClickHandler.onMovieClick(mMovie);
         }
 
-        public void bindTo(Movie movie) {
+        private void bindTo(Movie movie) {
             mMovie = movie;
+            movieItemTitle.setText(movie.getTitle());
+            movieItemYear.setText(movie.getReleaseDate());
+            movieItemYear.setText(movie.getReleaseDate());
             Uri uri = Uri.parse(StringUtils.BASE_POSTER_IMAGE_URL).buildUpon().appendEncodedPath(StringUtils.DEFAULT_MOVIE_POSTER_SIZE)
                     .appendEncodedPath(movie.getPosterPath())
                     .build();
@@ -91,10 +101,16 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
         }
 
 
-        public MovieAdapterViewHolder(View view) {
+        private MovieAdapterViewHolder(View view) {
             super(view);
-
-            movieItemView = (ImageView) itemView.findViewById(R.id.image_movie_poster);
+            /*
+            Refactor this later by implementing a viewgroup and setting the onclick listener to the group rather than each individual object
+             */
+            movieItemTitle = itemView.findViewById(R.id.movie_item_title);
+            movieItemYear = itemView.findViewById(R.id.movie_item_year);
+            movieItemView = itemView.findViewById(R.id.image_movie_poster);
+            movieItemCardView = itemView.findViewById(R.id.cv_movie_item);
+            movieItemCardView.setOnClickListener(this);
             movieItemView.setOnClickListener(this);
         }
 

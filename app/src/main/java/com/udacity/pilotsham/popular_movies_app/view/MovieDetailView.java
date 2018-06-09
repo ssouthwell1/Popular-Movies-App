@@ -11,5 +11,7 @@ public interface MovieDetailView {
 
     void displayError(String error);
 
+    void setMovieData();
+
 
 }

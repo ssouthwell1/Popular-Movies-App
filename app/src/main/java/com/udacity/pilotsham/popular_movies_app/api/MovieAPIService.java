@@ -19,10 +19,10 @@ public interface MovieAPIService {
     Observable<MovieResponse> getTopRatedMovies(@Query("api_key") String apiKey);
 
     @GET("movie/{movie_id}/videos")
-    Observable<VideoResponse> getMovieVideosById(@Query("api_key") String apiKey, @Path("movie_id") int id);
+    Observable<VideoResponse> getMovieVideosById(@Path("movie_id") int id, @Query("api_key") String apiKey);
 
     @GET("movie/{movie_id}/reviews")
-    Observable<ReviewResponse> getMovieReviewsById(@Query("api_key") String apiKey, @Path("movie_id") int id);
+    Observable<ReviewResponse> getMovieReviewsById(@Path("movie_id") int id, @Query("api_key") String apiKey);
 
 
 }

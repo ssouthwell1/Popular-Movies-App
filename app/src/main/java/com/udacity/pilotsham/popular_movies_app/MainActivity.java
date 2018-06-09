@@ -11,6 +11,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 
 import com.udacity.pilotsham.popular_movies_app.adapters.MovieAdapter;
@@ -95,15 +96,15 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
     }
 
 
-
     @Override
     public void showProgress() {
         mLoadingBar.setVisibility(View.VISIBLE);
+        mRecyclerView.setVisibility(View.INVISIBLE);
     }
 
     @Override
     public void hideProgress() {
-        mLoadingBar.setVisibility(View.INVISIBLE);
+        mLoadingBar.setVisibility(View.GONE);
     }
 
     @Override

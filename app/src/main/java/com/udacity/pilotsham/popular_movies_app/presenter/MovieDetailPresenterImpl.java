@@ -25,7 +25,7 @@ public class MovieDetailPresenterImpl implements MovieDetailPresenter {
 
     @Override
     public void getMovieVideosById(int movieId) {
-        MovieAPIClient.getInstance().getMovieVideosById(BuildConfig.MOVIE_DB_API_KEY, movieId)
+        MovieAPIClient.getInstance().getMovieVideosById(movieId, BuildConfig.MOVIE_DB_API_KEY)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new DisposableObserver<VideoResponse>() {
@@ -50,7 +50,7 @@ public class MovieDetailPresenterImpl implements MovieDetailPresenter {
 
     @Override
     public void getReviewsById(int movieId) {
-        MovieAPIClient.getInstance().getMovieReviewsById(BuildConfig.MOVIE_DB_API_KEY, movieId)
+        MovieAPIClient.getInstance().getMovieReviewsById(movieId, BuildConfig.MOVIE_DB_API_KEY)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new DisposableObserver<ReviewResponse>() {

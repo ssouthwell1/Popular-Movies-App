@@ -44,6 +44,8 @@ public class Movie implements Parcelable {
     private String releaseDate;
 
 
+
+
 //    public Movie(int id, String title, String poster, String overview, String userRating,
 //                 String releaseDate, String backdrop) {
 //        this.id = id;
