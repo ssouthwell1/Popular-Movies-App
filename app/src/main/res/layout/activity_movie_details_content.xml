@@ -21,12 +21,12 @@
         android:id="@+id/movie_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
 
+        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:text="TextView"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
-        app:layout_constraintEnd_toStartOf="@+id/image_add_favorite"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toEndOf="@+id/movie_poster"
         app:layout_constraintTop_toTopOf="@+id/guideline6" />
 
@@ -41,19 +41,6 @@
         app:layout_constraintEnd_toEndOf="@+id/movie_title"
         app:layout_constraintStart_toStartOf="@+id/movie_title"
         app:layout_constraintTop_toBottomOf="@+id/movie_title" />
-
-    <ImageView
-        android:id="@+id/image_add_favorite"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:background="?android:attr/selectableItemBackground"
-        android:tint="@color/red"
-        app:layout_constraintBottom_toBottomOf="@+id/movie_title"
-        app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintEnd_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toTopOf="@+id/movie_title"
-        app:srcCompat="@drawable/ic_add_favorite" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline"
@@ -88,11 +75,11 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:backgroundTint="@color/red"
-        android:text="FAVORITE"
 
+        android:text="FAVORITE"
         android:textColor="@color/white"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
-        app:layout_constraintStart_toStartOf="@+id/rating_star_1"
+        app:layout_constraintStart_toEndOf="@+id/movie_poster"
         app:layout_constraintTop_toBottomOf="@+id/rating_star_3" />
 
 
@@ -130,14 +117,14 @@
         android:id="@+id/rating_star_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
 
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/btn_favorite"
         app:layout_constraintDimensionRatio=""
         app:layout_constraintEnd_toStartOf="@+id/rating_star_2"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toEndOf="@+id/movie_poster"
+        app:layout_constraintStart_toStartOf="@+id/movie_release_date"
         app:layout_constraintTop_toBottomOf="@+id/movie_release_date"
         app:srcCompat="@drawable/ic_star_border" />
 
@@ -203,7 +190,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:text="Overview"
-        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/movie_poster" />
 
@@ -224,7 +211,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:text="Trailers"
-        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/movie_overview" />
 
@@ -234,7 +221,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:text="Reviews"
-        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/rv_videos" />
 

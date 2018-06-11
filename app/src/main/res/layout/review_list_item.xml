@@ -1,22 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tv_review_author"
+    <LinearLayout
+        android:id="@+id/review_title_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
-        android:text="Author"
-        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="6dp"
+            android:layout_marginRight="6dp"
+            android:src="@drawable/ic_account" />
+
+        <TextView
+            android:id="@+id/tv_review_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp"
+            android:text="Author"
+            android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
+
+
+    </LinearLayout>
+
 
     <TextView
         android:id="@+id/tv_review_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tv_review_author"
+        android:layout_below="@id/review_title_layout"
         android:text="@string/dummy_overview_text" />
 
 

@@ -116,7 +116,7 @@ public class MovieDetailsActivity extends AppCompatActivity implements MovieRevi
     @Override
     public void onVideoClick(Video video) {
         if (video != null) {
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(StringUtils.YOUTUBE_VIDEO_URL + video.getKey()));
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(video.getVideoUrl() + video.getKey()));
             startActivity(intent);
         }
     }

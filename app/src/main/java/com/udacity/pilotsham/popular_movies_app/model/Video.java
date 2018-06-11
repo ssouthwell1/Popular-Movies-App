@@ -41,6 +41,10 @@ public class Video {
     public Video() {
     }
 
+    public String getVideoUrl() {
+        return "http://www.youtube.com/watch?v=";
+    }
+
     public Video(String id, String iso_639_1, String iso_3166_1, String key, String name, String site, int size, String type) {
         this.id = id;
         this.iso_639_1 = iso_639_1;
