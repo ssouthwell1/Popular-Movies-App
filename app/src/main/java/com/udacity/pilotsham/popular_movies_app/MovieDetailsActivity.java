@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -25,10 +27,11 @@ import com.udacity.pilotsham.popular_movies_app.view.MovieDetailView;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.BindViews;
 import butterknife.ButterKnife;
 
 
-public class MovieDetailsActivity extends AppCompatActivity implements MovieReviewsAdapter.MovieReviewsAdapterOnClickHandler, MovieVideosAdapter.MovieVideosOnClickHandler, MovieDetailView {
+public class MovieDetailsActivity extends AppCompatActivity implements MovieReviewsAdapter.MovieReviewsAdapterOnClickHandler, MovieVideosAdapter.MovieVideosAdapterOnClickHandler, MovieDetailView {
 
     @BindView(R.id.movie_user_rating)
     TextView mUserRating;
@@ -54,6 +57,18 @@ public class MovieDetailsActivity extends AppCompatActivity implements MovieRevi
     @BindView(R.id.rv_videos)
     RecyclerView mVideosRecyclerView;
 
+    @BindViews({R.id.rating_star_1, R.id.rating_star_2, R.id.rating_star_3, R.id.rating_star_4, R.id.rating_star_5})
+    List<ImageView> ratingStars;
+
+    @BindView(R.id.btn_favorite)
+    Button mFavoriteButton;
+
+    @BindView(R.id.tv_reviews_title)
+    TextView mReviewTitleTextView;
+
+    @BindView(R.id.tv_trailers_title)
+    TextView mVideoTitleTextView;
+
     MovieDetailPresenter movieDetailPresenter;
 
     List<Review> mReviews;
@@ -62,9 +77,10 @@ public class MovieDetailsActivity extends AppCompatActivity implements MovieRevi
 
     Movie movieInstance;
 
-    List<ImageView> ratingStars;
 
     MovieReviewsAdapter mMovieReviewsAdapter;
+
+    MovieVideosAdapter mMovieVideosAdapter;
 
 
     @Override
@@ -75,46 +91,56 @@ public class MovieDetailsActivity extends AppCompatActivity implements MovieRevi
         init();
         setMovieData();
         loadReviews();
+        loadVideos();
 
 
     }
 
 
-    public void loadReviews() {
+    private void loadReviews() {
         movieDetailPresenter.getReviewsById(movieInstance.getId());
     }
 
-    public void loadVideos() {
+    private void loadVideos() {
         movieDetailPresenter.getMovieVideosById(movieInstance.getId());
     }
 
     @Override
     public void onReviewClick(Review review) {
-
+        if (review != null) {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(review.getUrl()));
+            startActivity(intent);
+        }
     }
 
     @Override
     public void onVideoClick(Video video) {
-
+        if (video != null) {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(StringUtils.YOUTUBE_VIDEO_URL + video.getKey()));
+            startActivity(intent);
+        }
     }
 
     @Override
     public void displayVideos(VideoResponse videoResponse) {
-        if (videoResponse != null) {
-
+        if (videoResponse != null && !videoResponse.getResults().isEmpty()) {
+            mVideos = videoResponse.getResults();
+            mMovieVideosAdapter = new MovieVideosAdapter(this, mVideos, this::onVideoClick);
+            mVideosRecyclerView.setAdapter(mMovieVideosAdapter);
+        } else {
+            mVideoTitleTextView.setVisibility(View.INVISIBLE);
         }
-        //movieDetailPresenter.getMovieVideosById(videoResponse.getId());
     }
 
     @Override
     public void displayReviews(ReviewResponse reviewResponse) {
-        if (reviewResponse != null) {
+        if (reviewResponse != null && !reviewResponse.getResults().isEmpty()) {
             mReviews = reviewResponse.getResults();
             mMovieReviewsAdapter = new MovieReviewsAdapter(this, reviewResponse.getResults(), this);
             mReviewsRecyclerView.setAdapter(mMovieReviewsAdapter);
 
 
-        }
+        } else mReviewTitleTextView.setVisibility(View.INVISIBLE);
 
     }
 
@@ -125,8 +151,16 @@ public class MovieDetailsActivity extends AppCompatActivity implements MovieRevi
 
     private void setRatings() {
         Double userRating = movieInstance.getVoteAverage() / 2;
-        
-        movieInstance.getVoteAverage();
+
+        for (int i = 0; i < userRating.intValue(); i++) {
+            ratingStars.get(i).setImageResource(R.drawable.ic_star);
+        }
+
+        if (Math.round(userRating) > userRating.intValue()) {
+            ratingStars.get(userRating.intValue()).setImageResource(R.drawable.ic_star_half);
+        }
+
+
     }
 
     @Override
@@ -156,6 +190,7 @@ public class MovieDetailsActivity extends AppCompatActivity implements MovieRevi
     private void init() {
         movieDetailPresenter = new MovieDetailPresenterImpl(this);
         mReviewsRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        mVideosRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         Intent parentActivity = getIntent();
 
         if (parentActivity != null) {

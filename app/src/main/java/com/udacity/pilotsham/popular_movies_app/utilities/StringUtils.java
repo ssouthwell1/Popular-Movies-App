@@ -22,6 +22,10 @@ public class StringUtils {
 
     public static final String TOP_RATED_MOVIE_PARAM = "top_rated";
 
+    public static final String YOUTUBE_VIDEO_URL = "http://img.youtube.com/vi/";
+
+    public static final String YOUTUBE_VIDEO_THUMBNAIL_PATH = "/0.jpg";
+
 //
 
 

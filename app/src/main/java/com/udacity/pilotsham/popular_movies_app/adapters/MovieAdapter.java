@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created by shamarisouthwell on 8/31/17.
@@ -72,11 +73,16 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
     }
 
     public class MovieAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        @BindView(R.id.image_movie_poster)
         ImageView movieItemView;
+        @BindView(R.id.cv_movie_item)
         CardView movieItemCardView;
+        @BindView(R.id.movie_item_title)
         TextView movieItemTitle;
+        @BindView(R.id.movie_item_year)
         TextView movieItemYear;
         Movie mMovie;
+
 
         @Override
         public void onClick(View view) {
@@ -103,24 +109,19 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
 
         private MovieAdapterViewHolder(View view) {
             super(view);
-            /*
-            Refactor this later by implementing a viewgroup and setting the onclick listener to the group rather than each individual object
-             */
-            movieItemTitle = itemView.findViewById(R.id.movie_item_title);
-            movieItemYear = itemView.findViewById(R.id.movie_item_year);
-            movieItemView = itemView.findViewById(R.id.image_movie_poster);
-            movieItemCardView = itemView.findViewById(R.id.cv_movie_item);
-            movieItemCardView.setOnClickListener(this);
+            ButterKnife.bind(this, view);
+            // Refactor later
+            view.setOnClickListener(this::onClick);
             movieItemView.setOnClickListener(this);
         }
 
     }
 
-    public void setMovieData(ArrayList<Movie> movies) {
-
-        mMovies = movies;
-        notifyDataSetChanged();
-    }
+//    public void setMovieData(ArrayList<Movie> movies) {
+//
+//        mMovies = movies;
+//        notifyDataSetChanged();
+//    }
 
 
 }

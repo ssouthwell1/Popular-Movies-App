@@ -70,10 +70,13 @@ public class MovieReviewsAdapter extends RecyclerView.Adapter<MovieReviewsAdapte
         TextView mReviewAuthor;
         @BindView(R.id.tv_review_content)
         TextView mReviewContent;
+        public final View mView;
 
         private MovieReviewsAdapterViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+            mView = itemView;
+            mView.setOnClickListener(this::onClick);
 
         }
 
