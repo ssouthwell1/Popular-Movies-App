@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -24,6 +25,7 @@ import com.udacity.pilotsham.popular_movies_app.presenter.MovieDetailPresenterIm
 import com.udacity.pilotsham.popular_movies_app.utilities.StringUtils;
 import com.udacity.pilotsham.popular_movies_app.view.MovieDetailView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -69,14 +71,16 @@ public class MovieDetailsActivity extends AppCompatActivity implements MovieRevi
     @BindView(R.id.tv_trailers_title)
     TextView mVideoTitleTextView;
 
+    @BindView(R.id.movie_detail_toolbar)
+    Toolbar mToolbar;
+
     MovieDetailPresenter movieDetailPresenter;
 
-    List<Review> mReviews;
+    ArrayList<Review> mReviews;
 
-    List<Video> mVideos;
+    ArrayList<Video> mVideos;
 
     Movie movieInstance;
-
 
     MovieReviewsAdapter mMovieReviewsAdapter;
 
@@ -93,7 +97,29 @@ public class MovieDetailsActivity extends AppCompatActivity implements MovieRevi
         loadReviews();
         loadVideos();
 
+        if (savedInstanceState != null && savedInstanceState.containsKey(StringUtils.VIDEOS_EXTRA)) {
+            mVideos = savedInstanceState.getParcelableArrayList(StringUtils.VIDEOS_EXTRA);
+        }
 
+        if (savedInstanceState != null && savedInstanceState.containsKey(StringUtils.REVIEWS_EXTRA)) {
+            mReviews = savedInstanceState.getParcelableArrayList(StringUtils.REVIEWS_EXTRA);
+        }
+
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        if (mVideos != null && !mVideos.isEmpty()) {
+            /**
+             See what happens onSaveInstanceState here
+             */
+            outState.putParcelableArrayList(StringUtils.VIDEOS_EXTRA, mVideos);
+
+        }
+        if (mReviews != null && !mReviews.isEmpty()) {
+            outState.putParcelableArrayList(StringUtils.REVIEWS_EXTRA, mReviews);
+        }
     }
 
 
@@ -170,6 +196,7 @@ public class MovieDetailsActivity extends AppCompatActivity implements MovieRevi
         mOverview.setText(movieInstance.getOverview());
         mReleaseDate.setText(movieInstance.getReleaseDate());
         mTitle.setText(movieInstance.getTitle());
+        getSupportActionBar().setTitle(movieInstance.getTitle());
         /* Refactor this later */
 
         Uri uri = Uri.parse(StringUtils.BASE_POSTER_IMAGE_URL).buildUpon().appendEncodedPath(StringUtils.DEFAULT_MOVIE_POSTER_SIZE)
@@ -188,6 +215,9 @@ public class MovieDetailsActivity extends AppCompatActivity implements MovieRevi
     }
 
     private void init() {
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
         movieDetailPresenter = new MovieDetailPresenterImpl(this);
         mReviewsRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         mVideosRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));

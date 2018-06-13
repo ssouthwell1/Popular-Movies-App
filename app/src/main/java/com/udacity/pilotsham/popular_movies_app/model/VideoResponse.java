@@ -3,6 +3,7 @@ package com.udacity.pilotsham.popular_movies_app.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class VideoResponse {
@@ -12,7 +13,7 @@ public class VideoResponse {
 
     @SerializedName("results")
     @Expose
-    List<Video> results;
+    ArrayList<Video> results;
 
     public int getId() {
         return id;
@@ -22,11 +23,11 @@ public class VideoResponse {
         this.id = id;
     }
 
-    public List<Video> getResults() {
+    public ArrayList<Video> getResults() {
         return results;
     }
 
-    public void setResults(List<Video> results) {
+    public void setResults(ArrayList<Video> results) {
         this.results = results;
     }
 }

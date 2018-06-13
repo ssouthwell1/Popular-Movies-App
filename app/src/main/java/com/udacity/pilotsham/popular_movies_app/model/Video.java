@@ -1,9 +1,12 @@
 package com.udacity.pilotsham.popular_movies_app.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Video {
+public class Video implements Parcelable {
 
     @SerializedName("id")
     @Expose
@@ -118,5 +121,30 @@ public class Video {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+
+    public static final Parcelable.Creator<Video> CREATOR = new Creator<Video>() {
+        @Override
+        public Video createFromParcel(Parcel source) {
+            return null;
+        }
+
+        @Override
+        public Video[] newArray(int size) {
+            return new Video[0];
+        }
+    };
+
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(site);
+
     }
 }

@@ -16,19 +16,32 @@
         android:fitsSystemWindows="true"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-        <include layout="@layout/activity_movie_details_header" />
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/collapsing_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <include layout="@layout/activity_movie_details_header" />
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/movie_detail_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin" />
+
+        </android.support.design.widget.CollapsingToolbarLayout>
 
     </android.support.design.widget.AppBarLayout>
-
-
 
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:clipToPadding="false"
-        >
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <include layout="@layout/activity_movie_details_content" />
 

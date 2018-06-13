@@ -1,9 +1,12 @@
 package com.udacity.pilotsham.popular_movies_app.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Review {
+public class Review implements Parcelable {
 
     @SerializedName("author")
     @Expose
@@ -61,5 +64,15 @@ public class Review {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+
     }
 }

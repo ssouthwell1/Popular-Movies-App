@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.udacity.pilotsham.popular_movies_app.R;
 import com.udacity.pilotsham.popular_movies_app.model.Review;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -19,7 +20,7 @@ import butterknife.ButterKnife;
 public class MovieReviewsAdapter extends RecyclerView.Adapter<MovieReviewsAdapter.MovieReviewsAdapterViewHolder> {
 
     private static final String TAG = MovieReviewsAdapter.class.getSimpleName();
-    List<Review> mReviews;
+    ArrayList<Review> mReviews;
     private Context mContext;
     private MovieReviewsAdapter.MovieReviewsAdapterOnClickHandler mMovieAdapterOnClickHandler;
 
@@ -28,7 +29,7 @@ public class MovieReviewsAdapter extends RecyclerView.Adapter<MovieReviewsAdapte
         void onReviewClick(Review review);
     }
 
-    public MovieReviewsAdapter(Context context, List<Review> reviews, MovieReviewsAdapterOnClickHandler movieReviewsAdapterOnClickHandler) {
+    public MovieReviewsAdapter(Context context, ArrayList<Review> reviews, MovieReviewsAdapterOnClickHandler movieReviewsAdapterOnClickHandler) {
         this.mContext = context;
         this.mReviews = reviews;
         this.mMovieAdapterOnClickHandler = movieReviewsAdapterOnClickHandler;

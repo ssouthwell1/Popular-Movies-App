@@ -29,11 +29,11 @@ import butterknife.ButterKnife;
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapterViewHolder> {
 
     private static final String TAG = MovieAdapter.class.getSimpleName();
-    private List<Movie> mMovies;
+    private ArrayList<Movie> mMovies;
     private Context mContext;
     private MovieAdapterOnClickHandler mMovieAdapterOnClickHandler;
 
-    public MovieAdapter(Context context, List<Movie> movieList, MovieAdapterOnClickHandler onClickHandler) {
+    public MovieAdapter(Context context, ArrayList<Movie> movieList, MovieAdapterOnClickHandler onClickHandler) {
         this.mMovies = movieList;
         this.mContext = context;
         mMovieAdapterOnClickHandler = onClickHandler;
@@ -41,6 +41,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
 
     public interface MovieAdapterOnClickHandler {
         void onMovieClick(Movie movie);
+
 
     }
 
@@ -117,7 +118,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
 
     }
 
-//    public void setMovieData(ArrayList<Movie> movies) {
+//    public void setMovieData(ArrayArrayList<Movie> movies) {
 //
 //        mMovies = movies;
 //        notifyDataSetChanged();

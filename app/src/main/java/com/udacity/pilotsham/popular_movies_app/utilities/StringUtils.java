@@ -18,6 +18,10 @@ public class StringUtils {
 
     public static final String MOVIE_EXTRA = "MOVIE_EXTRA";
 
+    public static final String VIDEOS_EXTRA = "VIDEOS_EXTRA";
+
+    public static final String REVIEWS_EXTRA = "REVIEWS_EXTRA";
+
     public static final String POPULAR_MOVIE_PARAM = "popular";
 
     public static final String TOP_RATED_MOVIE_PARAM = "top_rated";

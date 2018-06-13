@@ -3,7 +3,7 @@ package com.udacity.pilotsham.popular_movies_app.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class ReviewResponse {
     @SerializedName("id")
@@ -16,7 +16,7 @@ public class ReviewResponse {
 
     @SerializedName("results")
     @Expose
-    private List<Review> results;
+    private ArrayList<Review> results;
 
     @SerializedName("total_pages")
     @Expose
@@ -26,7 +26,7 @@ public class ReviewResponse {
     @Expose
     private int totalResults;
 
-    public ReviewResponse(int id, int page, List<Review> results, int totalPages, int totalResults) {
+    public ReviewResponse(int id, int page, ArrayList<Review> results, int totalPages, int totalResults) {
         this.id = id;
         this.page = page;
         this.results = results;
@@ -50,11 +50,11 @@ public class ReviewResponse {
         this.page = page;
     }
 
-    public List<Review> getResults() {
+    public ArrayList<Review> getResults() {
         return results;
     }
 
-    public void setResults(List<Review> results) {
+    public void setResults(ArrayList<Review> results) {
         this.results = results;
     }
 

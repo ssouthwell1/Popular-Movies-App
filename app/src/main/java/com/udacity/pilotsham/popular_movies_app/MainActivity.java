@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
 
     private MoviePresenterImpl moviePresenter;
 
-    List<Movie> mMovies = new ArrayList<>();
+    ArrayList<Movie> mMovies = new ArrayList<>();
 
     MovieAdapter mMovieAdapter;
 
@@ -52,6 +52,11 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
         loadMovieData(StringUtils.POPULAR_MOVIE_PARAM);
 
 
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
     }
 
     public void init() {
