@@ -14,6 +14,8 @@ An Android app that helps users to discover movies. This is Project 1 & 2 of the
 * [Retrofit](http://square.github.io/retrofit/ "Retrofit")
 * [Gson](https://github.com/google/gson "Gson")
 * [Picasso](http://square.github.io/picasso/ "Picasso")
+## Screens
+![Movie Detail Screen](https://github.com/ssouthwell1/Popular-Movies-App/blob/development/screenshot-details.png)
 ## Developer setup
 ### Requirements
 * Java 8
