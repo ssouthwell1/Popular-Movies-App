@@ -6,11 +6,7 @@ package com.udacity.pilotsham.popular_movies_app.utilities;
 
 public class StringUtils {
 
-    public static final String API_KEY = "e671f75966541248b1d1c257e0d0ae5d";
-
     public static final String BASE_URL = "https://api.themoviedb.org/3/";
-
-    public static final String MOVIE_URL = "https://api.themoviedb.org/3/movie/";
 
     public static final String BASE_POSTER_IMAGE_URL = "http://image.tmdb.org/t/p";
 
@@ -29,6 +25,8 @@ public class StringUtils {
     public static final String YOUTUBE_VIDEO_URL = "http://img.youtube.com/vi/";
 
     public static final String YOUTUBE_VIDEO_THUMBNAIL_PATH = "/0.jpg";
+
+
 
 //
 
