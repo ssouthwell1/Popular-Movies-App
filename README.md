@@ -1,4 +1,4 @@
-# Popular-Movies-App
+# Popular Movies
 An Android app that helps users to discover movies. This is Project 1 & 2 of the Android Developer Nanodegree Program with Udacity.
 ### Features:
 * Discover the most popular and highest rated movies
