@@ -22,7 +22,7 @@ An Android app that helps users to discover movies. This is Project 1 & 2 of the
 ### API Key
 The app uses [MovieDB](https://developers.themoviedb.org/3) API to get movie information and posters. You must provide your own API key in order to build the app.
 ####
-Add your API Key into the `build.gradle` file:
+Add your API Key into the `app/build.gradle` file:
 ``` 
 buildTypes.each {
             it.buildConfigField('String', 'MOVIE_DB_API_KEY', "\"ADD_API_KEY_HERE\"")
