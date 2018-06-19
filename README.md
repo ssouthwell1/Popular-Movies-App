@@ -15,7 +15,7 @@ An Android app that helps users to discover movies. This is Project 1 & 2 of the
 * [Gson](https://github.com/google/gson "Gson")
 * [Picasso](http://square.github.io/picasso/ "Picasso")
 ## Screens
-
+<img src= "https://github.com/ssouthwell1/Popular-Movies-App/blob/development/screenshot-details.png" width="400" height="800" markdown="1"> </img>
 ## Developer setup
 ### Requirements
 * Java 8
