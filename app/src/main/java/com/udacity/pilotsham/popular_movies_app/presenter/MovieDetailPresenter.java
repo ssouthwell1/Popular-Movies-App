@@ -6,6 +6,10 @@ public interface MovieDetailPresenter {
 
     void getReviewsById(int movieId);
 
+    void markAsFavorite();
+
+    void removeFromFavorites();
+
     void onDestroy();
 
     void onResume();

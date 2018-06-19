@@ -2,6 +2,7 @@ package com.udacity.pilotsham.popular_movies_app.api;
 
 import com.udacity.pilotsham.popular_movies_app.model.MovieResponse;
 import com.udacity.pilotsham.popular_movies_app.model.ReviewResponse;
+import com.udacity.pilotsham.popular_movies_app.model.SearchResponse;
 import com.udacity.pilotsham.popular_movies_app.model.VideoResponse;
 
 import io.reactivex.Observable;
@@ -24,5 +25,7 @@ public interface MovieAPIService {
     @GET("movie/{movie_id}/reviews")
     Observable<ReviewResponse> getMovieReviewsById(@Path("movie_id") int id, @Query("api_key") String apiKey);
 
+    @GET("search/movie")
+    Observable<SearchResponse> searchMovies(@Query("api_key") String apiKey, @Query("query") String movieQuery);
 
 }

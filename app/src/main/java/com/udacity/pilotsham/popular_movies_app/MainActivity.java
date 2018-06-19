@@ -2,6 +2,8 @@ package com.udacity.pilotsham.popular_movies_app;
 
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -10,12 +12,15 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 
 import com.udacity.pilotsham.popular_movies_app.adapters.MovieAdapter;
 import com.udacity.pilotsham.popular_movies_app.model.Movie;
+import com.udacity.pilotsham.popular_movies_app.model.MovieContract;
+import com.udacity.pilotsham.popular_movies_app.model.MovieDBHelper;
 import com.udacity.pilotsham.popular_movies_app.model.MovieResponse;
 import com.udacity.pilotsham.popular_movies_app.presenter.MoviePresenterImpl;
 import com.udacity.pilotsham.popular_movies_app.utilities.StringUtils;
@@ -26,10 +31,14 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity implements MovieAdapter.MovieAdapterOnClickHandler, MovieView {
 
     private MoviePresenterImpl moviePresenter;
+
+    private MovieDBHelper movieDBHelper;
+    private SQLiteDatabase database;
 
     ArrayList<Movie> mMovies = new ArrayList<>();
 
@@ -40,6 +49,11 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
 
     @BindView(R.id.rv_movie_grid)
     RecyclerView mRecyclerView;
+
+//    @BindView(R.id.movie_item_favorite_btn)
+//    ImageButton mFavoriteBtn;
+
+
 
 
     @Override
@@ -59,10 +73,24 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
         super.onSaveInstanceState(outState);
     }
 
+    private boolean isFavorite(Movie movie) {
+        Cursor movieCursor = database.query(MovieContract.MovieEntry.TABLE_NAME,
+                new String[]{MovieContract.MovieEntry.COLUMN_MOVIE_ID},
+                MovieContract.MovieEntry.COLUMN_MOVIE_ID + " = " + movie.getId(),
+                null,
+                null,
+                null,
+                null);
+
+        return true;
+    }
+
     public void init() {
         /**
          * Create Grid layout for recycler view to span 2 vertical columns and setup Movie Presenter
          */
+        movieDBHelper = new MovieDBHelper(this);
+        movieDBHelper.getWritableDatabase();
         moviePresenter = new MoviePresenterImpl(this);
         mRecyclerView.setLayoutManager(new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false));
 
@@ -81,6 +109,11 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
         Intent intent = new Intent(this, MovieDetailsActivity.class);
         intent.putExtra(StringUtils.MOVIE_EXTRA, movie);
         startActivity(intent);
+    }
+
+    @Override
+    public void onFavoriteButtonClick(Movie movie) {
+
     }
 
 
@@ -114,6 +147,16 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
 
     @Override
     public void displayError(String error) {
+
+    }
+
+    @Override
+    public void addToFavorites(Movie movie) {
+
+    }
+
+    @Override
+    public void removeFromFavorites(Movie movie) {
 
     }
 

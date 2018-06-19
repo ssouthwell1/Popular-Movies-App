@@ -80,6 +80,16 @@ public class MoviePresenterImpl implements MoviePresenter {
     }
 
     @Override
+    public void markAsFavorite() {
+
+    }
+
+    @Override
+    public void removeFromFavorites() {
+
+    }
+
+    @Override
     public void onDestroy() {
 
     }

@@ -1,5 +1,6 @@
 package com.udacity.pilotsham.popular_movies_app.presenter;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.udacity.pilotsham.popular_movies_app.BuildConfig;
@@ -18,6 +19,7 @@ public class MovieDetailPresenterImpl implements MovieDetailPresenter {
 
     private MovieDetailView movieDetailView;
     private String TAG = "MovieDetailPresenterImpl";
+    private SQLiteDatabase sqLiteDatabase;
 
     public MovieDetailPresenterImpl(MovieDetailView movieDetailView) {
         this.movieDetailView = movieDetailView;
@@ -72,6 +74,16 @@ public class MovieDetailPresenterImpl implements MovieDetailPresenter {
                         // Add progress bar to the entire screen
                     }
                 });
+    }
+
+    @Override
+    public void markAsFavorite() {
+
+    }
+
+    @Override
+    public void removeFromFavorites() {
+
     }
 
     @Override

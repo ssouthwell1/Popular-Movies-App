@@ -1,9 +1,10 @@
 package com.udacity.pilotsham.popular_movies_app.view;
 
+import com.udacity.pilotsham.popular_movies_app.model.Movie;
 import com.udacity.pilotsham.popular_movies_app.model.ReviewResponse;
 import com.udacity.pilotsham.popular_movies_app.model.VideoResponse;
 
-public interface MovieDetailView {
+public interface MovieDetailView extends BaseView {
 
     void displayVideos(VideoResponse videoResponse);
 

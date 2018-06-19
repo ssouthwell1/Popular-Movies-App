@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -122,6 +124,13 @@ public class MovieDetailsActivity extends AppCompatActivity implements MovieRevi
         }
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.movie_detail_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
 
     private void loadReviews() {
         movieDetailPresenter.getReviewsById(movieInstance.getId());
@@ -169,6 +178,7 @@ public class MovieDetailsActivity extends AppCompatActivity implements MovieRevi
         } else mReviewTitleTextView.setVisibility(View.INVISIBLE);
 
     }
+
 
     @Override
     public void displayError(String error) {
@@ -236,6 +246,15 @@ public class MovieDetailsActivity extends AppCompatActivity implements MovieRevi
     }
 
 
+    @Override
+    public void addToFavorites(Movie movie) {
+
+    }
+
+    @Override
+    public void removeFromFavorites(Movie movie) {
+
+    }
 }
 
 

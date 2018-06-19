@@ -1,27 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <!--<item-->
-        <!--android:id="@+id/nav_account"-->
-        <!--android:icon="@drawable/ic_account_circle_black_24dp"-->
+    <!--android:id="@+id/nav_account"-->
+    <!--android:icon="@drawable/ic_account_circle_black_24dp"-->
 
-        <!--android:title="My Account">-->
+    <!--android:title="My Account">-->
 
 
     <!--</item>-->
 
     <!--<item-->
-        <!--android:id="@+id/nav_library"-->
-        <!--android:icon="@drawable/ic_movie_black_24dp"-->
-        <!--android:title="My Library">-->
+    <!--android:id="@+id/nav_library"-->
+    <!--android:icon="@drawable/ic_movie_black_24dp"-->
+    <!--android:title="My Library">-->
 
     <!--</item>-->
 
     <item
         android:id="@+id/nav_favorites"
+
         android:title="Favorites">
 
     </item>
+
+
 
 
 </menu>
