@@ -246,15 +246,6 @@ public class MovieDetailsActivity extends AppCompatActivity implements MovieRevi
     }
 
 
-    @Override
-    public void addToFavorites(Movie movie) {
-
-    }
-
-    @Override
-    public void removeFromFavorites(Movie movie) {
-
-    }
 }
 
 

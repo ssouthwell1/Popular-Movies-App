@@ -4,7 +4,7 @@ import com.udacity.pilotsham.popular_movies_app.model.Movie;
 import com.udacity.pilotsham.popular_movies_app.model.ReviewResponse;
 import com.udacity.pilotsham.popular_movies_app.model.VideoResponse;
 
-public interface MovieDetailView extends BaseView {
+public interface MovieDetailView {
 
     void displayVideos(VideoResponse videoResponse);
 

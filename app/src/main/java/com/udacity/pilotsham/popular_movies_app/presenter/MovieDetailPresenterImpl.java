@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.udacity.pilotsham.popular_movies_app.BuildConfig;
 import com.udacity.pilotsham.popular_movies_app.api.MovieAPIClient;
+import com.udacity.pilotsham.popular_movies_app.model.Movie;
 import com.udacity.pilotsham.popular_movies_app.model.ReviewResponse;
 import com.udacity.pilotsham.popular_movies_app.model.VideoResponse;
 import com.udacity.pilotsham.popular_movies_app.utilities.StringUtils;
@@ -77,7 +78,12 @@ public class MovieDetailPresenterImpl implements MovieDetailPresenter {
     }
 
     @Override
-    public void markAsFavorite() {
+    public boolean isFavorite() {
+        return false;
+    }
+
+    @Override
+    public void addToFavorites() {
 
     }
 
@@ -85,6 +91,7 @@ public class MovieDetailPresenterImpl implements MovieDetailPresenter {
     public void removeFromFavorites() {
 
     }
+    
 
     @Override
     public void onDestroy() {

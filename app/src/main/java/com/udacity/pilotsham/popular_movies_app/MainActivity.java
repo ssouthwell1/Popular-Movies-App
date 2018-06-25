@@ -1,6 +1,8 @@
 package com.udacity.pilotsham.popular_movies_app;
 
 
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -38,7 +40,6 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
     private MoviePresenterImpl moviePresenter;
 
     private MovieDBHelper movieDBHelper;
-    private SQLiteDatabase database;
 
     ArrayList<Movie> mMovies = new ArrayList<>();
 
@@ -49,11 +50,6 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
 
     @BindView(R.id.rv_movie_grid)
     RecyclerView mRecyclerView;
-
-//    @BindView(R.id.movie_item_favorite_btn)
-//    ImageButton mFavoriteBtn;
-
-
 
 
     @Override
@@ -68,21 +64,10 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
 
     }
 
+
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-    }
-
-    private boolean isFavorite(Movie movie) {
-        Cursor movieCursor = database.query(MovieContract.MovieEntry.TABLE_NAME,
-                new String[]{MovieContract.MovieEntry.COLUMN_MOVIE_ID},
-                MovieContract.MovieEntry.COLUMN_MOVIE_ID + " = " + movie.getId(),
-                null,
-                null,
-                null,
-                null);
-
-        return true;
     }
 
     public void init() {
@@ -109,11 +94,6 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
         Intent intent = new Intent(this, MovieDetailsActivity.class);
         intent.putExtra(StringUtils.MOVIE_EXTRA, movie);
         startActivity(intent);
-    }
-
-    @Override
-    public void onFavoriteButtonClick(Movie movie) {
-
     }
 
 
@@ -147,16 +127,6 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
 
     @Override
     public void displayError(String error) {
-
-    }
-
-    @Override
-    public void addToFavorites(Movie movie) {
-
-    }
-
-    @Override
-    public void removeFromFavorites(Movie movie) {
 
     }
 

@@ -63,14 +63,7 @@
             </LinearLayout>
 
 
-            <ImageButton
-                android:id="@+id/movie_item_favorite_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:background="?android:attr/selectableItemBackground"
-                app:srcCompat="@drawable/ic_favorite_border" />
+     <include layout="@layout/movie_list_item_favorite" />
 
 
         </LinearLayout>

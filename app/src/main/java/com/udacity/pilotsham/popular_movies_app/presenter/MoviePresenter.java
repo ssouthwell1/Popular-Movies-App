@@ -7,10 +7,6 @@ public interface MoviePresenter {
 
     void getTopRatedMovies();
 
-    void markAsFavorite();
-
-    void removeFromFavorites();
-
     void onDestroy();
 
     void onResume();
