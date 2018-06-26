@@ -1,6 +1,6 @@
 package com.udacity.pilotsham.popular_movies_app.presenter;
 
-public interface MovieDetailPresenter extends BasePresenter {
+public interface MovieDetailPresenter extends FavoritesPresenter {
 
     void getMovieVideosById(int movieId);
 

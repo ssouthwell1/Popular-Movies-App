@@ -1,10 +1,8 @@
 package com.udacity.pilotsham.popular_movies_app.adapters;
 
-import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -15,34 +13,32 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 import com.udacity.pilotsham.popular_movies_app.R;
 import com.udacity.pilotsham.popular_movies_app.model.Movie;
 import com.udacity.pilotsham.popular_movies_app.model.MovieContract;
-import com.udacity.pilotsham.popular_movies_app.model.MovieProvider;
-import com.udacity.pilotsham.popular_movies_app.presenter.BasePresenter;
+import com.udacity.pilotsham.popular_movies_app.presenter.FavoritesPresenter;
 import com.udacity.pilotsham.popular_movies_app.utilities.StringUtils;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
-import butterknife.OnItemClick;
 
 /**
  * Created by shamarisouthwell on 8/31/17.
  */
 
-public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapterViewHolder> implements BasePresenter {
+public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapterViewHolder> implements FavoritesPresenter {
 
     private static final String TAG = MovieAdapter.class.getSimpleName();
     private Movie mMovie;
     private ArrayList<Movie> mMovies;
     private Context mContext;
     private MovieAdapterOnClickHandler mMovieAdapterOnClickHandler;
+
 
 
     public MovieAdapter(Context context, ArrayList<Movie> movieList, MovieAdapterOnClickHandler onClickHandler) {
@@ -74,7 +70,11 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
             cv.put(MovieContract.MovieEntry.COLUMN_MOVIE_POSTER_PATH, mMovie.getPosterPath());
             cv.put(MovieContract.MovieEntry.COLUMN_USER_RATING, mMovie.getVoteAverage());
             cv.put(MovieContract.MovieEntry.COLUMN_MOVIE_RELEASE_DATE, mMovie.getReleaseDate());
-            mContext.getContentResolver().insert(MovieContract.MovieEntry.CONTENT_URI, cv);
+            Uri uri = mContext.getContentResolver().insert(MovieContract.MovieEntry.CONTENT_URI, cv);
+
+            if (uri != null) {
+                Toast.makeText(mContext, "Added to Favorites", Toast.LENGTH_LONG).show();
+            }
 
         }
     }
@@ -85,7 +85,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
         if (isFavorite()) {
             mContext.getContentResolver().delete(MovieContract.MovieEntry.CONTENT_URI,
                     MovieContract.MovieEntry.COLUMN_MOVIE_ID + " = " + mMovie.getId(), null);
-
+            Toast.makeText(mContext, "Removed from Favorites", Toast.LENGTH_SHORT).show();
         }
 
 
