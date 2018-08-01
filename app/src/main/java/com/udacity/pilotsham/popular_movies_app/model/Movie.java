@@ -1,6 +1,9 @@
 package com.udacity.pilotsham.popular_movies_app.model;
 
 
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -12,23 +15,29 @@ import com.google.gson.annotations.SerializedName;
  * Created by shamarisouthwell on 8/30/17.
  */
 
+@Entity(tableName = "favorites")
 public class Movie implements Parcelable {
 
 
     @SerializedName("id")
     @Expose
+    @PrimaryKey
+    @ColumnInfo(name = "id")
     private Integer id;
 
     @SerializedName("vote_average")
     @Expose
+    @ColumnInfo(name = "userRating")
     private Double userRating;
 
     @SerializedName("title")
     @Expose
+    @ColumnInfo(name = "title")
     private String title;
 
     @SerializedName("poster_path")
     @Expose
+    @ColumnInfo(name = "poster_path")
     private String posterPath;
 
     @SerializedName("backdrop_path")
@@ -37,13 +46,13 @@ public class Movie implements Parcelable {
 
     @SerializedName("overview")
     @Expose
+    @ColumnInfo(name = "overview")
     private String overview;
 
     @SerializedName("release_date")
     @Expose
+    @ColumnInfo(name = "release_date")
     private String releaseDate;
-
-
 
 
 //    public Movie(int id, String title, String poster, String overview, String userRating,
